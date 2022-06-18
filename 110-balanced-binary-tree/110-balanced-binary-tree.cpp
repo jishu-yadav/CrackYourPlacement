@@ -21,13 +21,13 @@ public:
     bool isBalanced(TreeNode* root) {
         if(!root)
             return true;
-        // if(abs (maxDepth(root->left) - maxDepth(root->right) )>1){
-        //     return false;
-        // }
+        if(abs (maxDepth(root->left) - maxDepth(root->right) )>1){
+            return false;
+        }
         int left = maxDepth(root->left);
         int right = maxDepth(root->right);
-        // isBalanced(root->left);
-        // isBalanced(root->right);
-        return abs(left-right)<=1 && isBalanced(root->left)&& isBalanced(root->right);
+        return isBalanced(root->left)&&
+        isBalanced(root->right);
+        // return abs(left-right)<=1 && isBalanced(root->left)&& isBalanced(root->right);
     }
 };
