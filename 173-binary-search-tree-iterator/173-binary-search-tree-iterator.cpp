@@ -17,8 +17,6 @@ public:
             st.push(root);
             root=root->left;
         }
-        //TreeNode* minNode = new TreeNode(INT_MIN,NULL,st.top());
-        //st.push(minNode);,
     }
     BSTIterator(TreeNode* root) {
         stackPush(root);
