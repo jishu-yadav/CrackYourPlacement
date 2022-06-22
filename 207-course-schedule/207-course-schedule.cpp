@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool dfs(int i,vector<int>&visited,vector<int>adj[]){
+bool dfs(int i,vector<int>&visited,vector<int>adj[]){
         if(visited[i] == 1)
             return true;
         if(visited[i]==0){
@@ -29,7 +29,6 @@ public:
                 return false;
             }
         }
-        return true;
-        
+        return true;   
     }
 };
