@@ -14,12 +14,12 @@ using namespace std;
 class Solution
 {
 public:
-    void eraseSubStr(std::string &mainStr,const std::string & toErase){
-        size_t pos = mainStr.find(toErase);
-        if(pos!=std::string::npos){
-            mainStr.erase(pos,toErase.length());
-        }
-    }
+    // void eraseSubStr(std::string &mainStr,const std::string & toErase){
+    //     size_t pos = mainStr.find(toErase);
+    //     if(pos!=std::string::npos){
+    //         mainStr.erase(pos,toErase.length());
+    //     }
+    // }
     int wordBreak(string A, vector<string> &B) {
         //code here
         unordered_set<string>st;
@@ -38,7 +38,7 @@ public:
             if(st.find(A.substr(0,i))!=st.end())
                 dp[i] = 1;
             for(int j=1;j<=i;j++){
-                string part1 = A.substr(0,j);
+                //string part1 = A.substr(0,j);
                 string part2 = A.substr(j,i-j);
                 if(st.find(part2)!=st.end())
                     dp[i]+=dp[j];
