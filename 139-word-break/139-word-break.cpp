@@ -1,24 +1,42 @@
 class Solution {
 public:
-    bool wordBreak(string s, vector<string>& wordDict) {
-        unordered_set<string>ws(wordDict.begin(),wordDict.end());
-        vector<int>memo(s.size(),-1);
-        return check(s,ws,0,memo);
-    }
-    bool check(string s,unordered_set<string>&ws,int start,vector<int>&memo){
-        if(start>=s.size()) return true;
+    int dp[301];
+    // Below code gave tle and only 35/45 tcs passed
         
-        if(memo[start]!=-1)
-            return memo[start];
-        for(int i=start+1;i<=s.size();i++){
-            if(ws.count(s.substr(start,i-start)) && check(s,ws,i,memo))
-            {
-                memo[start]=1;
-                return true;
+    // int help(int i,string s,set<string>&wordDict){
+    //     if(i==s.size())
+    //         return 1;
+    //     string temp;
+    //     for(int j=i;j<s.size();j++){
+    //         temp+=s[j];
+    //         if(wordDict.find(temp)!=wordDict.end()){
+    //             if(help(j+1,s,wordDict))
+    //                 return 1;
+    //         }
+    //     }
+    //     return 0;
+    // }
+    int help(int i,string s,set<string>&wordDict){
+        if(i==s.size())
+            return 1;
+        if(dp[i]!=-1)
+                return dp[i];
+        string temp;
+        for(int j=i;j<s.size();j++){
+            temp+=s[j];
+            if(wordDict.find(temp)!=wordDict.end()){
+                if(help(j+1,s,wordDict))
+                    return dp[i]=1;
             }
         }
-        memo[start]=0;
-        return memo[start];
-        
+        return dp[i] = 0;
+    }
+    bool wordBreak(string s, vector<string>& wordDict) {
+        set<string>st;
+        for(auto i:wordDict){
+            st.insert(i);
+        }
+        memset(dp,-1,sizeof(dp));
+        return help(0,s,st);
     }
 };
