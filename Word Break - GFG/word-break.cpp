@@ -14,37 +14,60 @@ using namespace std;
 class Solution
 {
 public:
-    // void eraseSubStr(std::string &mainStr,const std::string & toErase){
-    //     size_t pos = mainStr.find(toErase);
-    //     if(pos!=std::string::npos){
-    //         mainStr.erase(pos,toErase.length());
-    //     }
-    // }
-    int wordBreak(string A, vector<string> &B) {
-        //code here
-        unordered_set<string>st;
-        for(const auto &str:B)
-        st.insert(str);
-        // stringstream ss(B);
-        // string word; // for storing each word
-        // while (ss >> word)
-        // {
-        //     //print the read word
-        //     //cout << word << "\n";
-        //     st.insert(word);
-        // }
-        vector<int>dp(A.size()+1,0);
-        for(int i=1;i<=A.size();i++){
-            if(st.find(A.substr(0,i))!=st.end())
-                dp[i] = 1;
-            for(int j=1;j<=i;j++){
-                //string part1 = A.substr(0,j);
-                string part2 = A.substr(j,i-j);
-                if(st.find(part2)!=st.end())
-                    dp[i]+=dp[j];
+    //int dp[1101];
+    int help(int i,string s,set<string>&wordDict){
+        if(i==s.size())
+            return 1;
+        string temp;
+        for(int j=i;j<s.size();j++){
+            temp+=s[j];
+            if(wordDict.find(temp)!=wordDict.end()){
+                if(help(j+1,s,wordDict))
+                    return 1;
             }
         }
-        return dp[A.size()];
+        return 0;
+    }
+    int wordBreak(string A, vector<string> &B) {
+        //code here
+        set<string>st;
+        for(auto &i:B){
+            st.insert(i);
+        }
+        // return help(0,A,st);
+        
+        
+        
+        // Another approach using dp tabulation:
+        
+        //this BELOW APPROACH IS FROM FRAZ YT BUT NOT WORIG PROPRRL 
+        int n = A.size();
+        vector<int>dp(n+1,0);
+        for(int i=1;i<=A.size();i++){
+            if(st.find(A.substr(0,i))!=st.end() ){
+                dp[i]= 1;
+            }
+            for(int j=1;j<=i;j++){
+                string part2 = A.substr(j,i-j);
+                if(st.find(part2)!=st.end()){
+                    dp[i] +=dp[j]; 
+                }
+            }
+           
+        }
+         return dp[A.size()];
+         
+        // for(int i=n-1;i>=0;i--){
+        //     string temp ;
+        //     for(int j=i;j<n;j++){
+        //         temp+=A[j];
+        //         if(st.find(temp)!=st.end()){
+        //             dp[i]=dp[j+1];
+        //         }
+        //     }
+        //     dp[i]=0;
+        // }
+        // return dp[0];
     }
 };
 
