@@ -13,19 +13,34 @@ class Solution
     //         return n;
     //     return fib(n-1)+fib(n-2);
     // }
+    int mod = 1e9+7;
     int helper(int n){
-        int dp[n+1];
-        dp[0]= 1;
-        for(int i =1;i<=n;i++){
-            int count = 0;
-            for(int j=1;j<=2;j++){
-                if(j<=i){
-                    count+=dp[i-j]%1000000007;
-                }
+        // int dp[n+1];
+        // dp[0]= 1;
+        // for(int i =1;i<=n;i++){
+        //     int count = 0;
+        //     for(int j=1;j<=2;j++){
+        //         if(j<=i){
+        //             count+=dp[i-j]%1000000007;
+        //         }
+        //     }
+        //     dp[i] =count;
+        // }
+        // return dp[n]%1000000007;
+        
+        // or
+        
+        vector<int> dp(n + 1, -1);
+        dp[0] = 1;
+        for(int i = 1; i <= n ; i++){
+            int x = dp[i - 1];
+            int y = 0;
+            if(i - 2 >= 0){
+                y += dp[i - 2];
             }
-            dp[i] =count;
+            dp[i] = (x + y)%mod;
         }
-        return dp[n]%1000000007;
+        return dp[n];
     }
     int countWays(int n)
     {
