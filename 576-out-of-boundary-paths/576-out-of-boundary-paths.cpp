@@ -22,8 +22,6 @@ public:
     int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
         int moves=0;
         vector<vector<vector<int>>> dp(maxMove + 1, vector<vector<int>> (m + 1, vector<int> (n + 1, -1)));
-         // vector<vector<vector<int>>> dp(N + 1, vector<vector<int>> (m + 1, vector<int> (n + 1, -1)));
-        // vector<vector<vector<int>>>dp(maxMove+1,vector<vector<int>> (startRow+1 , vector<int>(startColumn+1,-1)) );
         dp[maxMove][m][n] = dfs(m,n,maxMove,startRow,startColumn,0,dp);
         return  dp[maxMove][m][n];
     }
