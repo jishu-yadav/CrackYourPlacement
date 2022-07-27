@@ -5,7 +5,7 @@ public:
             return 0;
         int m = grid.size(), 
         n = grid[0].size(), 
-        days = 0, tot = 0, cnt = 0;
+        days = 0, tot = 0, cnt = 0;//tot is total oranges and cnt is org rotten by me
         queue<pair<int, int>> rotten;
 
         for(int i = 0; i < m; ++i){
