@@ -3,6 +3,7 @@ public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         int t = nums1.size();
         stack<int>st;
+        //
         int n = nums2.size();
         unordered_map<int,int>mp;
         vector<int>nge(n,-1);
