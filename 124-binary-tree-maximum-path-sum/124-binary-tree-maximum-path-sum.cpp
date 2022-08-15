@@ -17,8 +17,10 @@ public:
         if(root==NULL) return NULL;
         int ls = solve(root->left,res);
         int rs = solve(root->right,res);
-        int temp = max(max(ls,rs)+root->val,root->val);
-        int ans = max(temp,ls+rs+root->val);
+        int temp = max(max(ls,rs)+root->val, root->val);
+        int ans = max(temp, ls+rs+root->val);
+       
+       
         res = max(res,ans);
         return temp;
     }
