@@ -23,8 +23,6 @@ public:
             return true;
         if( abs(maxDepth(root->left) - maxDepth(root->right)) >1)
             return false;
-        int l = maxDepth(root->left);
-        int r = maxDepth(root->right);
         return isBalanced(root->left)&&isBalanced(root->right);
     }
 };
