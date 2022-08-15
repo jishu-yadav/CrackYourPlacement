@@ -14,20 +14,17 @@ public:
     int maxDepth(TreeNode* root){
         if(!root)
             return 0;
-        int lh = maxDepth(root->left);
-        int rh = maxDepth(root->right);
-        return 1+max(lh,rh);
+        int lmax = maxDepth(root->left);
+        int rmax = maxDepth(root->right);
+        return 1 + max(lmax,rmax);
     }
     bool isBalanced(TreeNode* root) {
         if(!root)
             return true;
-        if(abs (maxDepth(root->left) - maxDepth(root->right) )>1){
+        if( abs(maxDepth(root->left) - maxDepth(root->right)) >1)
             return false;
-        }
-        int left = maxDepth(root->left);
-        int right = maxDepth(root->right);
-        return isBalanced(root->left)&&
-        isBalanced(root->right);
-        // return abs(left-right)<=1 && isBalanced(root->left)&& isBalanced(root->right);
+        int l = maxDepth(root->left);
+        int r = maxDepth(root->right);
+        return isBalanced(root->left)&&isBalanced(root->right);
     }
 };
