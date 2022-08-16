@@ -24,7 +24,7 @@ public:
 //         res = max(res,ans);
         ls = max(0,ls);
         rs = max(0,rs);
-        int choice1 = ls+rs+root->val;
+        //int choice1 = ls+rs+root->val;
         //int choice2 = root->val;
         res = max(res, ls+rs+root->val);
         return max(ls,rs)+root->val;
