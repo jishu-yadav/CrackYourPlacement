@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    TreeNode* constructTree(vector<int>& preorder,int preStart,int preEnd,vector<int>& inorder,int inStart,int inEnd,map<int,int> &mp){
+     TreeNode* constructTree(vector<int>& preorder,int preStart,int preEnd,vector<int>& inorder,int inStart,int inEnd,map<int,int> &mp){
         if(preStart>preEnd || inStart>inEnd) return NULL;
         
         TreeNode* root = new TreeNode(preorder[preStart]);
