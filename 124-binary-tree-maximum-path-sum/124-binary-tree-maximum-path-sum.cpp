@@ -14,7 +14,7 @@ public:
     int solve(TreeNode* root,int &res)
     {
         // Base Case 
-        if(root==NULL) return NULL;
+        if(root==NULL) return 0;
         int ls = solve(root->left,res);
         int rs = solve(root->right,res);
 //         int temp = max(max(ls,rs)+root->val, root->val);
