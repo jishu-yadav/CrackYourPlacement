@@ -12,24 +12,14 @@
 class Solution {
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        int n = nums.size();
-        if(n==0)
+        if(nums.size()==0)
             return NULL;
-        TreeNode* rootNode = new TreeNode(nums[n/2]);
+        int n = nums.size();
+        TreeNode* root = new TreeNode(nums[n/2]);
         vector<int>left(nums.begin(),nums.begin()+n/2);
         vector<int>right(nums.begin()+n/2+1,nums.end());
-        
-        rootNode->left = sortedArrayToBST(left);
-        rootNode->right = sortedArrayToBST(right);
-        // TreeNode* node = new TreeNode(nums[0]);
-        // for(int i=1;i<n;i++){
-        //     if(nums[i]<node->val){
-        //         node->left = new TreeNode(nums[i]);
-        //     }else{
-        //         node->right = new TreeNode(nums[i]);
-        //     }
-        // }
-        
-        return rootNode;
+        root->left = sortedArrayToBST(left);
+        root->right = sortedArrayToBST(right);
+        return root;
     }
 };
