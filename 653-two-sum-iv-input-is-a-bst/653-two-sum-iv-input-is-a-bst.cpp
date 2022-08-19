@@ -11,15 +11,18 @@
  */
 class Solution {
 public:
-    unordered_set<int>st;
-    bool findTarget(TreeNode* root, int k) {
+    //unordered_set<int>st;
+    bool findTarget_helper(TreeNode* root, int k,unordered_set<int>&st){
         if(!root)
             return false;
         if(st.find(k-root->val)!=st.end()){
-            return true;    
+            return true;
         }
         st.insert(root->val);
-        return findTarget(root->left,k) || findTarget(root->right,k);
-        
+        return findTarget_helper(root->left,k,st) || findTarget_helper(root->right,k,st);
+    }
+    bool findTarget(TreeNode* root, int k) {
+        unordered_set<int>st;
+        return findTarget_helper(root,k,st);
     }
 };
