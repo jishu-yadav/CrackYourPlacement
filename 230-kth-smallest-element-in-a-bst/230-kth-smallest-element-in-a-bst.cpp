@@ -12,15 +12,16 @@
 class Solution {
 public:
     int val=0;
-    int ans=0;
+    int ans = 0;
     void bst(TreeNode* root){
-        if(!root) return;
-        
+        if(!root)
+            return;
         bst(root->left);
         val--;
         if(val==0)
             ans = root->val;
         bst(root->right);
+
     }
     int kthSmallest(TreeNode* root, int k) {
         val = k;
