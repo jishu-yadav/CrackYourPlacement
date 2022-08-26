@@ -1,12 +1,16 @@
 class Solution {
 public:
-    bool reorderedPowerOf2(int N) {
-        set<string> si = {"1", "2", "4", "8", "16", "23", "46", "128", "256", "125", "0124", "0248", "0469", "1289",
-                          "13468", "23678", "35566", "011237", "122446", "224588", "0145678", "0122579", "0134449",
-                          "0368888", "11266777", "23334455", "01466788", "112234778", "234455668", "012356789",
-        };
-        string t = to_string(N);
-        sort(t.begin(), t.end());
-        return si.count(t) > 0;
+    bool reorderedPowerOf2(int n) {
+        string num = sorted(n);
+        for(int i=0;i<32;i++){
+            if(num==sorted(1<<i))
+                return true;
+        }
+        return false;
+    }
+    string sorted(int n){
+        string s = to_string(n);
+        sort(s.begin(),s.end());
+        return s;
     }
 };
